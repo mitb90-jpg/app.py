@@ -53,34 +53,76 @@ if uploaded_file is not None:
     # ---------------- CREDIT RULE ----------------
     credit_mask = (
         df["Credit"].notna() &
-        df["Description"].astype(str).str.contains("Proceeds|Deposit", case=False, na=False)
+        df["Description"].astype(str).str.contains("Direct Deposit, HELPING HANDS N PAY/PAY", case=False, na=False)
     )
     df.loc[credit_mask, "Category"] = "Revenue"
 
     # ---------------- DEBIT RULES ----------------
     df.loc[
         df["Debit"].notna() &
-        df["Description"].astype(str).str.contains("CHQ", na=False),
+        df["Description"].astype(str).str.contains("Car rental", na=False),
         "Category"
-    ] = "Loan to world eyewear"
+    ] = "Car rental"
 
     df.loc[
         df["Debit"].notna() &
-        df["Description"].astype(str).str.contains("TRANSFER TO", case=False, na=False),
+        df["Description"].astype(str).str.contains("INTERAC e-Transfer Sent", case=False, na=False),
         "Category"
-    ] = "Loan to world eyewear"
+    ] = "Drawings"
 
     df.loc[
         df["Debit"].notna() &
-        df["Description"].astype(str).str.contains("TRANSFER OTHER", case=False, na=False),
+        df["Description"].astype(str).str.contains("CNO", case=False, na=False),
         "Category"
-    ] = "Investment income"
+    ] = "Dues and Subscriptions"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("Online Bill Payment, CRA-AMT-OWING", case=False, na=False),
+        "Category"
+    ] = "Government taxes"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("RNAO renewal|NS RN Lisence", case=False, na=False),
+        "Category"
+    ] = "Lisence Fee"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("Amazon|Blundston|Walmart|Staples", case=False, na=False),
+        "Category"
+    ] = "Office Supplies"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("ACLS", case=False, na=False),
+        "Category"
+    ] = "Trainings"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("Debit Card Purchase, TFC CANADA INC", case=False, na=False),
+        "Category"
+    ] = "Transportation Charges"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("Air Canada|INT'L POS PUR", case=False, na=False),
+        "Category"
+    ] = "Lisence Fee"
 
     df.loc[
         df["Debit"].notna() &
-        df["Description"].astype(str).str.contains("SERVICE CHARGE", case=False, na=False),
+        df["Description"].astype(str).str.contains("Shell", case=False, na=False),
         "Category"
-    ] = "Interest and Bank charges"
+    ] = "Vehicle Expenses"
+
+        df.loc[
+        df["Debit"].notna() &
+        df["Description"].astype(str).str.contains("Plan Fee|Statement Fee|e-Transfer Fee", case=False, na=False),
+        "Category"
+    ] = "Interest and Bank Charges"
 
     # ---------------- ADD Sr. No ----------------
     df = df.reset_index(drop=True)
