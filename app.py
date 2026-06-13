@@ -76,37 +76,37 @@ if uploaded_file is not None:
         "Category"
     ] = "Dues and Subscriptions"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("Online Bill Payment, CRA-AMT-OWING", case=False, na=False),
         "Category"
     ] = "Government taxes"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("RNAO renewal|NS RN Lisence", case=False, na=False),
         "Category"
     ] = "Lisence Fee"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("Amazon|Blundston|Walmart|Staples", case=False, na=False),
         "Category"
     ] = "Office Supplies"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("ACLS", case=False, na=False),
         "Category"
     ] = "Trainings"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("Debit Card Purchase, TFC CANADA INC", case=False, na=False),
         "Category"
     ] = "Transportation Charges"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("Air Canada|INT'L POS PUR", case=False, na=False),
         "Category"
@@ -118,7 +118,7 @@ if uploaded_file is not None:
         "Category"
     ] = "Vehicle Expenses"
 
-        df.loc[
+    df.loc[
         df["Debit"].notna() &
         df["Description"].astype(str).str.contains("Plan Fee|Statement Fee|e-Transfer Fee", case=False, na=False),
         "Category"
