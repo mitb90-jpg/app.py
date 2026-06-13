@@ -153,34 +153,6 @@ if uploaded_file is not None:
     bank_charge_amount = df.loc[df["Category"] == "Interest and Bank charges", "Debit"].fillna(0).sum()
     loan_amount = df.loc[df["Category"] == "Loan to world eyewear", "Debit"].fillna(0).sum()
 
-    # ---------------- PIE CHART ----------------
-    st.subheader("🥧 Financial Distribution")
-
-    amounts = {
-        "Revenue": revenue_amount,
-        "Investment": investment_amount,
-        "Loan": loan_amount,
-        "Bank Charges": bank_charge_amount
-    }
-
-    amounts = {k: v for k, v in amounts.items() if v > 0}
-
-    if amounts:
-        fig, ax = plt.subplots()
-        ax.pie(amounts.values(), labels=amounts.keys(), autopct="%1.1f%%")
-        ax.set_title("Financial Distribution")
-        st.pyplot(fig)
-
-    # ---------------- SUMMARY TABLE ----------------
-    st.subheader("📋 Category Summary")
-
-    summary_df = pd.DataFrame({
-        "Category": list(amounts.keys()),
-        "Amount": [f"${v:,.2f}" for v in amounts.values()]
-    })
-
-    st.dataframe(summary_df, use_container_width=True, hide_index=True)
-
     # ---------------- DOWNLOAD ----------------
     output = io.BytesIO()
 
