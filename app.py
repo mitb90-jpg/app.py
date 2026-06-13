@@ -132,21 +132,6 @@ if uploaded_file is not None:
     st.subheader("📊 Categorized Transactions")
     st.dataframe(df, use_container_width=True, hide_index=True)
 
-    # ---------------- SUMMARY ----------------
-    st.subheader("📊 Summary Dashboard")
-
-    revenue_count = (df["Category"] == "Revenue").sum()
-    bank_charges_count = (df["Category"] == "Interest and Bank charges").sum()
-    loan_count = (df["Category"] == "Loan to world eyewear").sum()
-    investment_count = (df["Category"] == "Investment income").sum()
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    col1.metric("Revenue", revenue_count)
-    col2.metric("Bank Charges", bank_charges_count)
-    col3.metric("Loans", loan_count)
-    col4.metric("Investment", investment_count)
-
     # ---------------- AMOUNTS ----------------
     revenue_amount = df.loc[df["Category"] == "Revenue", "Credit"].fillna(0).sum()
     investment_amount = df.loc[df["Category"] == "Investment income", "Debit"].fillna(0).sum()
