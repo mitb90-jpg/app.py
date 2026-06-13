@@ -149,7 +149,7 @@ if uploaded_file is not None:
     st.download_button(
         "⬇️ Download Excel File",
         data=output,
-        file_name="categorized_financials.xlsx",
+        file_name="LAURIE_ANACTA_NURSING_PROFESSIONAL_CORPORATION.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
