@@ -27,14 +27,33 @@ with col2:
     )
 
 # ---------------- FILE UPLOAD ----------------
-uploaded_file = st.sidebar.file_uploader(
+import streamlit as st
+import pandas as pd
+
+# ---------------- EXCEL UPLOAD ----------------
+uploaded_excel = st.sidebar.file_uploader(
     "Upload Excel File",
-    type=["xlsx"]
+    type=["xlsx"],
+    key="excel_uploader"
 )
 
-if uploaded_file is not None:
+# ---------------- PDF UPLOAD ----------------
+uploaded_pdf = st.sidebar.file_uploader(
+    "Upload PDF File",
+    type=["pdf"],
+    key="pdf_uploader"
+)
 
-    df = pd.read_excel(uploaded_file)
+# ---------------- PROCESS EXCEL ----------------
+if uploaded_excel is not None:
+    df = pd.read_excel(uploaded_excel)
+    st.write("Excel File Uploaded Successfully")
+    st.dataframe(df)
+
+# ---------------- PROCESS PDF ----------------
+if uploaded_pdf is not None:
+    st.write("PDF Uploaded Successfully")
+    st.write("File Name:", uploaded_pdf.name)
 
     # ---------------- CLEAN DATA ----------------
     df.columns = df.columns.astype(str).str.strip()
